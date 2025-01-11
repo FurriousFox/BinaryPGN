@@ -1,0 +1,42 @@
+@startuml bpgn_structure
+title bPGN File Format Structure
+
+package "File Structure" #lightblue {
+  object "File ID (uint8)" as FileID
+  FileID : test hello\nworld :)
+
+  object "Number of Attributes (uint8)" as NumAttributes
+
+  frame "Attribute 1" as A1 {
+    object "Name Length (uint8)" as NameLen1
+    object "Name (char[])" as Name1
+    object "Value Length (uint8)" as ValueLen1
+    object "Value (char[])" as Value1
+  }
+
+  skinparam BackgroundColor transparent
+  skinparam componentStyle rectangle
+  component "..." as Dots #transparent {
+
+  }
+
+  frame "Attribute n" as A2 {
+    object "Name Length (uint8)" as NameLenN
+    object "Name (char[])" as NameN
+    object "Value Length (uint8)" as ValueLenN
+    object "Value (char[])" as ValueN
+  }
+}
+
+FileID -- NumAttributes
+NumAttributes -- NameLen1
+NameLen1 -- Name1
+Name1 -- ValueLen1
+ValueLen1 -- Value1
+Value1 -- Dots
+Dots -- NameLenN
+NameLenN -- NameN
+NameN -- ValueLenN
+ValueLenN -- ValueN
+
+@enduml
