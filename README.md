@@ -23,5 +23,5 @@ Testing various formats to store [Lichess' 14TB of chess games](https://database
 | LZMA2       | 7.816 | 1.81TB         | 12.79% |
 | Binary PGN  | 21.152| 0.67TB         | 4.73% |
 
-**NOTE:** The results for Zstandard and LZMA2 are only based on the games of December 2024, further testing is needed to determine the ratio over the whole dataset.
+**NOTE:** The results for Zstandard and LZMA2 are only based on the games of December 2024, further testing is needed to determine the ratio over the whole dataset.  
 **NOTE:** The results for Binary PGN are bogus and just for example, as Binary PGN isn't finished yet.
