@@ -215,10 +215,10 @@ _often_ similar to Date tag
 `[EventDate "YYYY.MM.DD"]`
 - EventSponsor
 `[EventSponsor "Acme Corporation"]`
-- Section (playing section in tournement)
+- Section (playing section in tournament)
 `[Section "Open"]`
 `[Section "Reserve"]`
-- Stage (stage in tournement (if applicable))
+- Stage (stage in tournament (if applicable))
 `[Stage "Preliminary"]`
 `[Stage "Semifinal"]`
 - Board (number to identify physical board played at)
