@@ -90,7 +90,7 @@ example:
   - format: `$` + one or more digit characters (uint8; 0-255)
   - example: `$142`
   - example in context: `1. d4!? $18 $132 *`
-  meaning: first move, to d4, interesting move (!?), white is winning (\$18), white has moderate counterplay (\$132), the other hasn't done a move (\*)
+  meaning: first move, to d4, interesting move (!?), white is winning (\$18), white has moderate counterplay (\$132), undetermined game result (\*)
 
 - symbol token
   - starts with a letter or digit character and is immediately followed by a sequence of zero or more symbol continuation characters
@@ -141,7 +141,7 @@ The above example means that both Bob and Alice both represented white.
 
 #### all tag pair tags
 
-32 (7 (STR) + 2 (common) + 2 lichess specific) tags[^4]
+39 (7 (STR) + 30 (common) + 2 lichess specific) tags[^4]
 
 the Seven Tag Roster (in (export) order) (7 tags): [^9]
 
@@ -173,7 +173,7 @@ Game drawn: `[Result "1/2-1/2"]`
 No result (yet): `[Result "*"]`
 
 \
-common (but non-official) tags:[^5] [^6]
+common (but non-official) tags (30 tags):[^5] [^6]
 
 - WhiteTitle  
 `[WhiteTitle "IM"]` (or any other title)  
@@ -273,7 +273,15 @@ includes but isn't limited to:
 `[PlyCount "17"]`
 
 \
-tags used by Lichess: [^10]
+tags used by Lichess (2 tags): [^10]
+
+- WhiteRatingDiff  
+rating difference for white as result of winning / losing,  
+format: `+`/`-` + any number [between 0 and 149 (in Blitz)](https://github.com/lichess-org/lila/blob/b1fb7595dcfd939a562775e26597f9245a7ac7a8/modules/fide/src/main/FidePlayerSync.scala#L160) [^11]  
+`[WhiteRatingDiff "+5"]`
+- BlackRatingDiff  
+format: `+`/`-` + any number [between 0 and 149 (in Blitz)](https://github.com/lichess-org/lila/blob/b1fb7595dcfd939a562775e26597f9245a7ac7a8/modules/fide/src/main/FidePlayerSync.scala#L160) [^11]  
+`[BlackRatingDiff "-7"]`
 
 [^1]: still using a string token, not integer token, as a string token is required for tag pairs per spec
 [^2]: though the value commonly represents an int, it may be any other value (including ones representing non-numerical values)
@@ -285,3 +293,4 @@ tags used by Lichess: [^10]
 [^8]: this definition is missing some nuances [to be found in the official documentation](https://www.saremba.de/chessgml/standards/pgn/pgn-complete.htm#c9.6.1)
 [^9]: these tags are required for archival storage, but not strictly required in either export or import format
 [^10]: these tag pairs are used currently like this by Lichess, but might be used differently in the future or by other people (assume that these specifications will be violated)
+[^11]: while rating may change up to 149 Elo points, the rating difference would need to be at least 304 to be able to be higher than 128
